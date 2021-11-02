@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>html documents</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
+
+		}
+		body{
+			border: 1px solid black;
+			margin: auto;
+			width: fit-content;
+			padding: 20px;
+		}
+	</style>
+	 <!-- google fonts -->
+	 <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+   <h2>Hello World!</h2>
+   <div id="container">
+  <h1>Select Key From Drop Down Or Serach in Input Field!</h1>
+  <select id="select" >
+    <option selected>select key</option>    
+    <option value='1'>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='thanks'>Thanks</option>
+  </select>
+  <input type="text" placeholder="Search.." id="myInput">   
+
+  <div id="result_div">
+  	<h3>Object Results</h3>
+   <!-- object result -->
+  </div>
+</div>
+<script type="text/javascript" >
+   let select = document.getElementById('select');
+let result_div = document.getElementById('result_div');
+let myInput = document.getElementById('myInput');
+
+let objectlis=[{id:'1', name:'Aryan',age:22,city:'Merruth',education:'MA'},{id:'2',name:'Ram',age:23,city:'Mau',education:'BA'},{id:'3',name:'Deepak',age:22,city:'Kanpur',education:'Bcom'},{id:'4',name:'Sachan',age:22,city:'Lucknow',education:'Btech'}]
+
+// select key value from drop down
+select.onchange=function(e){
+  let Value=e.target.value;
+  objectlis.forEach((item)=> {if(Value==item.id){
+    createMethode(item)
+  } })
+  console.log(e.target.value);
+}
+
+// creating new elements in this method
+function createMethode(item){
+  let hr=document.createElement('hr');
+  let name=document.createElement('h4');
+  name.innerHTML=item.name;
+  let age=document.createElement('h4');
+  age.innerHTML=item.age;
+  let city=document.createElement('h4');
+  city.innerHTML=item.city;
+  let education=document.createElement('h4');
+  education.innerHTML=item.education;
+  result_div.append(hr,name,age,city,education);
+}
+
+// input function
+myInput.addEventListener('keyup',(e)=>{
+  if(e.key=='Enter'){
+     var Value = document.getElementById('myInput').value;
+    objectlis.forEach((item)=> {if(Value==item.id){
+      createMethode(item)
+      document.getElementById('myInput').value='';
+    } })
+
+    console.log(e.target.value);
+  }
+})
+
+</script>
+</body>
+</html>
